@@ -1,21 +1,378 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="en-AU">
 <head>
-<meta charset="UTF-8">
-<title>SimHALO Beta</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background:#0b0d12; color:#f2f2f2; display:flex; align-items:center; justify-content:center; height:100vh; margin:0; text-align:center; }
-.wrap { max-width: 560px; padding: 2rem; }
-h1 { font-size: 1.8rem; margin-bottom: 0.5rem; }
-p { color: #aab0bc; }
-a { color: #6ea8fe; }
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>SimHALO Beta — lead the resus, by voice</title>
+  <meta name="description" content="SimHALO is a voice-driven emergency medicine team simulation. Lead a virtual resus team out loud, then get a marked debrief. Sign up for the beta on iPhone or Android.">
+  <!-- Beta page: keep it out of search results until public launch. -->
+  <meta name="robots" content="noindex">
+  <meta name="color-scheme" content="dark light">
+  <meta name="theme-color" content="#0F0F1A" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#F3F4F8" media="(prefers-color-scheme: light)">
+  <meta property="og:title" content="SimHALO Beta">
+  <meta property="og:description" content="Lead a virtual resus team by voice. Join the SimHALO beta.">
+  <meta property="og:image" content="assets/icon-512.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <link rel="stylesheet" href="styles.css">
+  <script src="config.js"></script>
+  <script src="main.js" defer></script>
 </head>
 <body>
-<div class="wrap">
-<h1>SimHALO beta &mdash; page coming shortly.</h1>
-<p>Questions in the meantime: <a href="mailto:luke@simhalo.com">luke@simhalo.com</a></p>
-</div>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="topbar">
+    <div class="wrap topbar__inner">
+      <a class="brand" href="#top" aria-label="SimHALO home">
+        <img src="assets/logo-mark.png" width="32" height="32" alt="">
+        <span class="brand__name">SimHALO</span>
+        <span class="tag tag--beta">Beta</span>
+      </a>
+      <nav aria-label="Sections">
+        <ul class="nav">
+          <li><a href="#how">How it works</a></li>
+          <li><a href="#beta">Beta testing</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a class="nav__cta" href="#signup">Sign up</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- 1. HERO ------------------------------------------------------------ -->
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      <div class="wrap hero__grid">
+        <div class="hero__copy">
+          <p class="eyebrow"><span class="dot" aria-hidden="true"></span> Emergency medicine team simulation</p>
+          <h1 id="hero-title">Lead the resus.<br><span class="accent">Out loud.</span></h1>
+          <p class="lede">
+            SimHALO puts you in charge of a virtual resuscitation team. You speak your orders;
+            the team answers, acts and pushes back in real time. Afterwards you get a marked
+            debrief.
+          </p>
+
+          <div class="signup" id="signup" aria-labelledby="signup-title">
+            <h2 id="signup-title" class="signup__title">Join the beta</h2>
+            <p class="signup__intro">Beta testing runs in short windows. Leave your details and we'll email you when the next one opens.</p>
+
+            <form class="form" id="signup-form" novalidate>
+              <div class="field">
+                <label for="f-name">Name</label>
+                <input id="f-name" name="name" type="text" autocomplete="name" maxlength="120" required>
+              </div>
+              <div class="field">
+                <label for="f-email">Email</label>
+                <input id="f-email" name="email" type="email" autocomplete="email" inputmode="email" maxlength="254" required>
+                <p class="field__hint">Use the same address when you create your SimHALO account.</p>
+              </div>
+              <div class="field">
+                <label for="f-role">Role</label>
+                <select id="f-role" name="role" required>
+                  <option value="" selected disabled>Choose…</option>
+                  <option value="consultant">Consultant / specialist</option>
+                  <option value="registrar">Registrar</option>
+                  <option value="resident">Resident / junior doctor</option>
+                  <option value="nurse">Nurse</option>
+                  <option value="paramedic">Paramedic</option>
+                  <option value="student">Student</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+              <fieldset class="field field--choice">
+                <legend>Your phone</legend>
+                <label class="choice"><input type="radio" name="platform" value="ios" required> iPhone</label>
+                <label class="choice"><input type="radio" name="platform" value="android"> Android</label>
+              </fieldset>
+              <div class="field">
+                <label for="f-workplace">Workplace <span class="opt">(optional)</span></label>
+                <input id="f-workplace" name="workplace" type="text" autocomplete="organization" maxlength="160">
+              </div>
+              <div class="field">
+                <label for="f-heard">How did you hear about SimHALO? <span class="opt">(optional)</span></label>
+                <input id="f-heard" name="heard_from" type="text" maxlength="160">
+              </div>
+              <!-- Honeypot: hidden from people, filled in by bots. -->
+              <div class="hp" aria-hidden="true">
+                <label for="f-website">Website</label>
+                <input id="f-website" name="website" type="text" tabindex="-1" autocomplete="off">
+              </div>
+              <label class="consent">
+                <input type="checkbox" name="consent" id="f-consent" required>
+                <span>You can email me about the SimHALO beta.</span>
+              </label>
+              <p class="form__error" id="signup-error" role="alert" hidden></p>
+              <button class="btn btn--primary" type="submit" id="signup-submit">Join the waiting list</button>
+              <p class="fine form__privacy">
+                We only use these details to run the beta and contact you about it. We don't share them.
+                <a data-privacy href="https://simhalo.github.io/privacy/">Privacy policy</a>.
+              </p>
+            </form>
+
+            <div class="signup__done" id="signup-done" tabindex="-1" hidden>
+              <p class="signup__done-title"><span class="dot dot--live" aria-hidden="true"></span> You're on the list.</p>
+              <p>We'll email you when the next beta window opens. You can install the app now. It unlocks when your window opens.</p>
+              <p><a href="#install-section">Install the beta ↓</a></p>
+            </div>
+            <p class="signup__closed" id="signup-closed" hidden>Sign-ups aren't open on this page yet. Please check back soon.</p>
+          </div>
+        </div>
+
+        <!-- Monitor-style illustration of a voice exchange -->
+        <figure class="monitor" aria-label="Illustration: an example voice exchange with the team during a case">
+          <div class="monitor__bar">
+            <span class="mono">RESUS 1</span>
+            <span class="mono monitor__case">54-year-old male</span>
+            <span class="mono monitor__live"><span class="dot dot--live" aria-hidden="true"></span>Listening</span>
+          </div>
+          <div class="wave" aria-hidden="true">
+            <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+          </div>
+          <ol class="transcript">
+            <li class="line line--you"><span class="who mono">You</span><p>“Carlos, full set of obs please. Dan, can you draw up the drugs we talked about?”</p></li>
+            <li class="line"><span class="who mono">Dan · Drugs</span><p>“Drawing up now — I’ll read them back when they’re ready.”</p></li>
+            <li class="line"><span class="who mono">Lizzie · Team leader nurse</span><p>“Before he arrives, can we run through who’s doing what?”</p></li>
+          </ol>
+          <figcaption class="monitor__cap mono">Illustrative exchange</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- 1b. INSTALL (shown after sign-up) ----------------------------------- -->
+    <section class="section" id="install-section" aria-labelledby="install-title" hidden>
+      <div class="wrap wrap--narrow">
+          <div class="install" id="install" aria-labelledby="install-title">
+            <h2 id="install-title">Install the beta</h2>
+            <p class="fine">The app opens for beta testers during testing windows. We'll email you before each one.</p>
+            <div class="install__buttons">
+              <a class="btn btn--store" id="btn-ios" data-platform="ios" href="#install">
+                <svg class="btn__icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M16.4 12.6c0-2.4 2-3.6 2.1-3.7-1.1-1.7-2.9-1.9-3.5-1.9-1.5-.2-2.9.9-3.7.9-.8 0-1.9-.9-3.2-.8-1.6 0-3.1 1-4 2.4-1.7 3-.4 7.4 1.2 9.8.8 1.2 1.8 2.5 3 2.4 1.2 0 1.7-.8 3.1-.8 1.5 0 1.9.8 3.2.8 1.3 0 2.2-1.2 3-2.4.9-1.4 1.3-2.7 1.3-2.8 0 0-2.5-1-2.5-3.9zM14 5.5c.7-.8 1.1-1.9 1-3-1 0-2.1.7-2.8 1.5-.6.7-1.2 1.8-1 2.9 1 .1 2.1-.6 2.8-1.4z"/></svg>
+                <span class="btn__text">
+                  <span class="btn__label">Join the iPhone beta</span>
+                  <span class="btn__sub">via Apple TestFlight</span>
+                </span>
+                <span class="btn__rec" aria-hidden="true">Your phone</span>
+              </a>
+              <a class="btn btn--store" id="btn-android" data-platform="android" href="#install">
+                <svg class="btn__icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M17.6 9.5 19.4 6.4a.4.4 0 0 0-.7-.4l-1.8 3.1A11 11 0 0 0 12 8a11 11 0 0 0-4.9 1.1L5.3 6a.4.4 0 1 0-.7.4l1.8 3.1A9.6 9.6 0 0 0 1.5 17h21a9.6 9.6 0 0 0-4.9-7.5zM7 14.4a1 1 0 1 1 0-2 1 1 0 0 1 0 2zm10 0a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/></svg>
+                <span class="btn__text">
+                  <span class="btn__label">Get the Android beta</span>
+                  <span class="btn__sub" id="android-sub">direct download</span>
+                </span>
+                <span class="btn__rec" aria-hidden="true">Your phone</span>
+              </a>
+            </div>
+            <p class="install__note" id="install-note" aria-live="polite">
+              Choose your phone above. iPhone testers install Apple's free TestFlight app first; the link walks you through it.
+            </p>
+            <p class="install__desktop" id="install-desktop" hidden>
+              On a computer? Open <strong class="mono" id="short-url"></strong> on your phone to install.
+            </p>
+          </div>
+      </div>
+    </section>
+
+    <!-- 2. HOW A SESSION WORKS ---------------------------------------------- -->
+    <section class="section" id="how" aria-labelledby="how-title">
+      <div class="wrap">
+        <header class="section__head">
+          <p class="kicker mono">01 — How a session works</p>
+          <h2 id="how-title">You are the medical team leader.</h2>
+          <p class="section__lede">Each case runs for roughly 25 minutes. There's no menu of answers to tap: you think, you say it, the team does it.</p>
+        </header>
+
+        <ol class="steps">
+          <li class="step">
+            <span class="step__n mono">1</span>
+            <h3>Pick a case</h3>
+            <p>Choose a scenario from the Sims tab. Use <strong>Car Mode</strong> for voice only, or <strong>Hands-On Mode</strong> to see vitals and results on screen, and type if you'd rather.</p>
+          </li>
+          <li class="step">
+            <span class="step__n mono">2</span>
+            <h3>Brief and take handover</h3>
+            <p>Prepare your team and allocate roles, then take the paramedic's handover as the patient arrives, just as you would on a shift.</p>
+          </li>
+          <li class="step">
+            <span class="step__n mono">3</span>
+            <h3>Lead by voice</h3>
+            <p>Speak your orders. Name the team member, say the drug and dose, ask for the result. They read back, act, and the patient responds. Escalate to the specialist on the phone when you need to.</p>
+          </li>
+          <li class="step">
+            <span class="step__n mono">4</span>
+            <h3>Debrief</h3>
+            <p>When the case closes you get a marked debrief covering your clinical decisions, communication and leadership, with what to do differently next time.</p>
+          </li>
+        </ol>
+
+        <div class="split">
+          <div class="roster" aria-labelledby="team-title">
+            <h3 id="team-title" class="kicker mono">Your team, every case</h3>
+            <ul class="roster__grid">
+              <li><b>Lizzie</b><span>Nurse team leader &amp; coach</span></li>
+              <li><b>Alex</b><span>Airway doctor</span></li>
+              <li><b>Amy</b><span>Airway nurse</span></li>
+              <li><b>Carlos</b><span>Circulation nurse</span></li>
+              <li><b>Dan</b><span>Drugs nurse</span></li>
+              <li><b>Priya</b><span>Procedures doctor</span></li>
+              <li><b>Steve</b><span>Scribe</span></li>
+              <li><b>Penny</b><span>Paramedic</span></li>
+            </ul>
+            <p class="fine">Plus an on-call specialist on the phone (whoever the case needs) and, in the paediatric cases, a worried parent.</p>
+          </div>
+
+          <div class="cases" aria-labelledby="cases-title">
+            <h3 id="cases-title" class="kicker mono">Beta case list</h3>
+            <ul class="cases__list">
+              <li><span class="code mono">CC</span><span class="case__t">54-year-old male · Closing Time</span><span class="lvl mono">Critical care</span></li>
+              <li><span class="code mono">PA</span><span class="case__t">16-day-old male · Off His Feeds</span><span class="lvl mono">Paediatrics</span></li>
+              <li><span class="code mono">TR</span><span class="case__t">27-year-old male · Knife Edge</span><span class="lvl mono">Trauma</span></li>
+              <li><span class="code mono">PA</span><span class="case__t">2-year-old male · Won't Stop</span><span class="lvl mono">Paediatrics</span></li>
+              <li><span class="code mono">ME</span><span class="case__t">58-year-old male · Heavy Heart</span><span class="lvl mono">Medical</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. BETA TESTERS ----------------------------------------------------- -->
+    <section class="section section--alt" id="beta" aria-labelledby="beta-title">
+      <div class="wrap">
+        <header class="section__head">
+          <p class="kicker mono">02 — For beta testers</p>
+          <h2 id="beta-title">Thanks for testing. Here's the deal.</h2>
+        </header>
+
+        <div class="cards">
+          <article class="card">
+            <h3>What to expect</h3>
+            <ul class="ticks">
+              <li>This is an early build. Expect rough edges: a missed word, a slow reply, a mark that looks wrong.</li>
+              <li>The beta opens in testing windows (usually a week). During a window you can start one new case a day. If you stop partway, resume it from the Home screen.</li>
+              <li>You'll need to create an account and allow microphone and speech recognition access. Voice is the whole point.</li>
+              <li>Try one case in Car Mode (voice) and one in Hands-On Mode, and read the debrief.</li>
+              <li>Car Mode is hands-free. Hands-On Mode is not for use while driving.</li>
+            </ul>
+          </article>
+
+          <article class="card card--accent">
+            <h3>How to give feedback</h3>
+            <p>Tap <strong>Give feedback</strong> on the home screen or the debrief screen and just say what happened. It's voice, like everything else.</p>
+            <p class="fine">The most useful things to tell us: anything that crashed, audio that cut out or overlapped, a mark that looks wrong, or a team member who misheard you. Say which case and roughly when.</p>
+            <p class="fine" id="feedback-ios">On iPhone you can also take a screenshot and share it to TestFlight.</p>
+            <p class="fine" id="feedback-email" hidden>Or email <a data-email href="#"></a>.</p>
+          </article>
+
+          <article class="card">
+            <h3>Privacy</h3>
+            <p>Every patient and case in SimHALO is fictional. Never enter or mention real patient information.</p>
+            <p class="fine">Your voice is processed so the team can understand you, and your sim transcripts and scores are stored against your account. Full details are in the <a data-privacy href="https://simhalo.github.io/privacy/">privacy policy</a>.</p>
+            <p class="fine">SimHALO is an education tool. It is not a medical device and not for real clinical decisions.</p>
+          </article>
+
+          <article class="card">
+            <h3>Requirements</h3>
+            <dl class="reqs">
+              <div><dt>iPhone</dt><dd>iOS 16 or later, plus the free TestFlight app</dd></div>
+              <div><dt>Android</dt><dd>Android 7.0 or later</dd></div>
+              <div><dt>Network</dt><dd>An internet connection; the team runs on our servers</dd></div>
+              <div><dt>Mic</dt><dd>Microphone and speech recognition permission</dd></div>
+            </dl>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. HOW-TO (placeholders) ------------------------------------------- -->
+    <section class="section" id="howto" aria-labelledby="howto-title">
+      <div class="wrap">
+        <header class="section__head">
+          <p class="kicker mono">03 — How-to guides</p>
+          <h2 id="howto-title">Short videos, coming soon.</h2>
+        </header>
+        <ul class="howto">
+          <li class="howto__card">
+            <div class="howto__media" aria-hidden="true"><span class="play"></span></div>
+            <div class="howto__body"><span class="tag tag--soon">Coming soon</span><h3>Your first case</h3><p>Signing in, choosing a mode and starting a sim.</p></div>
+          </li>
+          <li class="howto__card">
+            <div class="howto__media" aria-hidden="true"><span class="play"></span></div>
+            <div class="howto__body"><span class="tag tag--soon">Coming soon</span><h3>Talking to the team</h3><p>Naming people, giving orders and hearing read-backs.</p></div>
+          </li>
+          <li class="howto__card">
+            <div class="howto__media" aria-hidden="true"><span class="play"></span></div>
+            <div class="howto__body"><span class="tag tag--soon">Coming soon</span><h3>Reading your debrief</h3><p>What the marks mean and how to use them.</p></div>
+          </li>
+          <li class="howto__card">
+            <div class="howto__media" aria-hidden="true"><span class="play"></span></div>
+            <div class="howto__body"><span class="tag tag--soon">Coming soon</span><h3>Giving feedback</h3><p>Using the voice feedback button.</p></div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 5. FAQ -------------------------------------------------------------- -->
+    <section class="section section--alt" id="faq" aria-labelledby="faq-title">
+      <div class="wrap wrap--narrow">
+        <header class="section__head">
+          <p class="kicker mono">04 — FAQ</p>
+          <h2 id="faq-title">Questions</h2>
+        </header>
+        <div class="faq">
+          <details>
+            <summary>Who is SimHALO for?</summary>
+            <p>Clinicians who lead, or will lead, resuscitations: emergency registrars and consultants, critical care and senior ED nurses, and anyone who runs the room.</p>
+          </details>
+          <details>
+            <summary>Who built it?</summary>
+            <p>An emergency physician working in regional NSW, Australia, who wanted a way to practise leading a resus without needing a sim lab and a dozen colleagues.</p>
+          </details>
+          <details>
+            <summary>Do I have to talk? Can I type?</summary>
+            <p>Voice is the core experience, and Car Mode is voice only. Hands-On Mode shows information on screen and lets you speak or type.</p>
+          </details>
+          <details>
+            <summary>Is any real patient data involved?</summary>
+            <p>No. All patients and cases are fictional. Please don't mention real patients while you play.</p>
+          </details>
+          <details>
+            <summary>When can I play?</summary>
+            <p>During beta testing windows. We email everyone on the list before each window opens. Within a window you get one new case a day, and you can pause or leave a case and pick it up again later the same day.</p>
+          </details>
+          <details>
+            <summary>Does it work offline?</summary>
+            <p>No. You need an internet connection during a case, because the team's responses come from our servers.</p>
+          </details>
+          <details>
+            <summary>Why does iPhone need TestFlight?</summary>
+            <p>TestFlight is Apple's official app for beta software. Install it from the App Store, then open the SimHALO beta link. Beta builds expire after 90 days and TestFlight will offer updates as we release them.</p>
+          </details>
+          <details>
+            <summary>Android says the app is from an unknown source.</summary>
+            <p>The Android beta is installed directly rather than through the Play Store, so Android asks you to allow installs from your browser. Allow it for this one install, then you can switch it off again.</p>
+          </details>
+          <details>
+            <summary>Does it cost anything? Will it count for CPD?</summary>
+            <p>The beta is free to test. Pricing after the beta, and CPD recognition, will be confirmed before launch.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- 6. FOOTER ------------------------------------------------------------- -->
+  <footer class="footer">
+    <div class="wrap footer__inner">
+      <div class="footer__brand">
+        <img src="assets/logo-mark.png" width="28" height="28" alt="">
+        <span>SimHALO</span>
+      </div>
+      <ul class="footer__links">
+        <li id="footer-contact"></li>
+        <li><a data-privacy href="https://simhalo.github.io/privacy/">Privacy policy</a></li>
+      </ul>
+      <p class="fine">© <span id="year">2026</span> SimHALO. Made in regional NSW, Australia. For education only; not a medical device.</p>
+    </div>
+  </footer>
 </body>
 </html>

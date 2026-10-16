@@ -14,7 +14,7 @@ window.SIMHALO_CONFIG = {
   // (eas build -p android --profile android-apk -> the build's install URL),
   // OR a Google Play testing opt-in URL
   // (https://play.google.com/apps/testing/com.simhalo.app).
-  androidBetaUrl: "https://expo.dev/artifacts/eas/sa_0lnKAcQkYXLkcTZgsm3T_yQbxGflagl1hMpNFknE.apk",
+  androidBetaUrl: "https://expo.dev/artifacts/eas/z0mYva1LzvcMDWpBBm5m1JaDDZPiwE1KHpceqeTNfvE.apk",
 
   // "apk"  -> shows sideload instructions ("allow installs from your browser")
   // "play" -> shows Play Store opt-in instructions
